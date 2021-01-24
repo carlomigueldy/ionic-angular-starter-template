@@ -48,23 +48,29 @@ export class ThemeService {
     console.log("[ThemeService] toggleTheme");
 
     if (this.isLight) {
-      document.body.setAttribute("data-theme", "dark");
-      this.localStorageService.set("preferences.theme", "dark");
-      this._themeSubject.next("dark");
+      this.toDarkMode();
     } else {
-      document.body.setAttribute("data-theme", "light");
-      this.localStorageService.set("preferences.theme", "light");
-      this._themeSubject.next("light");
+      this.toLightMode();
     }
   }
 
   colorTest(systemInitiatedDark: any) {
     if (systemInitiatedDark.matches) {
-      document.body.setAttribute("data-theme", "dark");
-      this.localStorageService.set("preferences.theme", "dark");
+      this.toDarkMode();
     } else {
-      document.body.setAttribute("data-theme", "light");
-      this.localStorageService.set("preferences.theme", "light");
+      this.toLightMode();
     }
+  }
+
+  toDarkMode() {
+    document.body.setAttribute("data-theme", "dark");
+    this.localStorageService.set("preferences.theme", "dark");
+    this._themeSubject.next("dark");
+  }
+
+  toLightMode() {
+    document.body.setAttribute("data-theme", "light");
+    this.localStorageService.set("preferences.theme", "light");
+    this._themeSubject.next("light");
   }
 }

@@ -33,9 +33,17 @@ export class AppPage implements OnInit {
     this.authenticationService.currentUser.subscribe(
       (x) => (this.currentUser = x)
     );
+
+    // observer route changes and update
+    // sidemenu index based on current route path
+    router.events.subscribe((event: any) => {
+      this.setCurrentIndex();
+    });
   }
 
   ngOnInit() {
+    this.setCurrentIndex();
+
     console.log("[App Page] ngOnInit", this.currentUser);
     const path = window.location.pathname.split("folder/")[1];
     if (path !== undefined) {
@@ -48,5 +56,13 @@ export class AppPage implements OnInit {
   logout() {
     this.authenticationService.logout();
     this.router.navigate(["/auth/login"]);
+  }
+
+  setCurrentIndex() {
+    const index = this.pages.findIndex((item) =>
+      this.router.url.includes(item.url)
+    );
+
+    this.currentIndex = index;
   }
 }

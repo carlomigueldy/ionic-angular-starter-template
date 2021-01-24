@@ -7,5 +7,74 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <!-- Theme Preferences Section -->
+            <ion-card-header>
+              <ion-card-title>Theme Preferences</ion-card-title>
+            </ion-card-header>
+            <ion-radio-group
+              (ionChange)="toggleTheme($event)"
+              [(ngModel)]="theme"
+            >
+              <ion-item>
+                <ion-label>Dark</ion-label>
+                <ion-radio value="dark"></ion-radio>
+              </ion-item>
 
-<ion-content>Settings Page</ion-content>
+              <ion-item>
+                <ion-label>Light</ion-label>
+                <ion-radio value="light"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+
+            <!-- Some Other Section -->
+            <ion-card-header>
+              <ion-card-title>System</ion-card-title>
+            </ion-card-header>
+            <ion-radio-group>
+              <ion-item>
+                <ion-label>Dark</ion-label>
+                <ion-radio value="dark"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Light</ion-label>
+                <ion-radio value="light"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+
+            <!-- Auth -->
+            <ion-card-header>
+              <ion-card-title>Account</ion-card-title>
+            </ion-card-header>
+            <div>
+              <ion-button
+                (click)="logout()"
+                expand="block"
+                color="danger"
+                size="xl"
+              >
+                Logout
+              </ion-button>
+            </div>
+            <div>
+              <ion-button
+                (click)="logoutAllDevices()"
+                expand="block"
+                color="danger"
+                size="xl"
+              >
+                Logout All Devices
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
