@@ -1,20 +1,22 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { AppPageRoutingModule } from './app-routing.module';
+import { AppPageRoutingModule } from "./app-routing.module";
 
-import { AppPage } from './app.page';
+import { AppPage } from "./app.page";
+import { SharedModule } from "@app/modules/shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AppPageRoutingModule
+    AppPageRoutingModule,
+    SharedModule,
   ],
-  declarations: [AppPage]
+  declarations: [AppPage],
 })
 export class AppPageModule {}
