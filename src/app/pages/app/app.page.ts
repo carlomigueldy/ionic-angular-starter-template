@@ -11,6 +11,21 @@ import { Component, OnInit } from "@angular/core";
 export class AppPage implements OnInit {
   currentUser: User;
 
+  public currentIndex = 0;
+
+  public pages = [
+    {
+      title: "Home",
+      url: "/app/home",
+      icon: "mail",
+    },
+    {
+      title: "Settings",
+      url: "/app/settings",
+      icon: "cog",
+    },
+  ];
+
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
@@ -21,7 +36,13 @@ export class AppPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log('[App Page] ngOnInit', this.currentUser)
+    console.log("[App Page] ngOnInit", this.currentUser);
+    const path = window.location.pathname.split("folder/")[1];
+    if (path !== undefined) {
+      this.currentIndex = this.pages.findIndex(
+        (page) => page.title.toLowerCase() === path.toLowerCase()
+      );
+    }
   }
 
   logout() {

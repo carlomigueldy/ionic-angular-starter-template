@@ -1,15 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      {{ currentUser.username }}
-    </ion-buttons>
-    <ion-title>App</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon name="log-out-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-split-pane contentId="main-content">
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-content>
+      <ion-list id="inbox-list">
+        <ion-list-header>Ionic App</ion-list-header>
+        <ion-note>Subtitle</ion-note>
 
-<ion-router-outlet></ion-router-outlet>
+        <ion-menu-toggle
+          auto-hide="false"
+          *ngFor="let page of pages; let i = index"
+        >
+          <ion-item
+            (click)="selectedIndex = i"
+            routerDirection="root"
+            [routerLink]="[page.url]"
+            lines="none"
+            detail="false"
+            [class.selected]="currentIndex == i"
+          >
+            <ion-icon
+              slot="start"
+              [ios]="page.icon + '-outline'"
+              [md]="page.icon + '-sharp'"
+            ></ion-icon>
+            <ion-label>{{ page.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>
