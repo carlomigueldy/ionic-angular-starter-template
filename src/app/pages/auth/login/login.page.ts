@@ -1,4 +1,4 @@
-import { AuthenticationService } from "./../../../services/authentication.service";
+import { AuthenticationService } from "./../../../services/core/authentication.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -49,8 +49,6 @@ export class LoginPage implements OnInit {
   }
 
   async onSubmit() {
-    console.log("[Login Page] onSubmit");
-
     const loading = await this.loadingController.create({
       message: "Please wait...",
       // duration: 2000,
@@ -69,12 +67,13 @@ export class LoginPage implements OnInit {
       .login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
-        (data) => {
-          this.router.navigate([this.returnUrl]);
-        },
+        (data) => {},
         (error) => {
           this.error = error;
           this.loading = false;
+        },
+        () => {
+          this.router.navigate([this.returnUrl]);
         }
       );
 
