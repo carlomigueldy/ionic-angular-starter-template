@@ -37,12 +37,13 @@ export class ThemeService {
       return;
     }
 
+    document.body.setAttribute("data-theme", preferredTheme);
     this._themeSubject.next(preferredTheme);
   }
 
   toggleTheme() {
     let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
-    systemDark.addListener(this.colorTest);
+    systemDark.addEventListener("change", this.colorTest);
 
     console.log("[ThemeService] toggleTheme");
 
@@ -57,9 +58,7 @@ export class ThemeService {
     }
   }
 
-  colorTest(systemInitiatedDark) {
-    console.log("colorTest", systemInitiatedDark);
-
+  colorTest(systemInitiatedDark: any) {
     if (systemInitiatedDark.matches) {
       document.body.setAttribute("data-theme", "dark");
       this.localStorageService.set("preferences.theme", "dark");
