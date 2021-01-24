@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ["admin@admin.com", Validators.required],
+      email: ["dev@dev.com", [Validators.required, Validators.email]],
       password: ["password", Validators.required],
     });
 
