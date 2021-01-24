@@ -1,8 +1,17 @@
 <ion-split-pane contentId="main-content">
-  <ion-menu contentId="main-content" type="overlay">
+  <ion-menu contentId="main-content" type="push">
     <ion-content>
-      <ion-list id="inbox-list">
-        <ion-list-header>Ionic App</ion-list-header>
+      <img
+        src="assets/svg/undraw_happy_2021_h01d.svg"
+        width="100%"
+        height="150"
+        alt=""
+      />
+
+      <ion-list id="menu-list">
+        <ion-list-header>
+          <h1>Ionic App</h1>
+        </ion-list-header>
         <ion-note>Subtitle</ion-note>
 
         <ion-menu-toggle
@@ -10,7 +19,7 @@
           *ngFor="let page of pages; let i = index"
         >
           <ion-item
-            (click)="selectedIndex = i"
+            (click)="currentIndex = i"
             routerDirection="root"
             [routerLink]="[page.url]"
             lines="none"

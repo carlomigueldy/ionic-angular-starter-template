@@ -11,8 +11,6 @@ import { ThemeService } from "./services/core/theme.service";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
-  
-
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -29,6 +27,4 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
-  
 }

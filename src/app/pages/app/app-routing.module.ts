@@ -20,6 +20,11 @@ const routes: Routes = [
             (m) => m.SettingsPageModule
           ),
       },
+      {
+        path: "profile",
+        loadChildren: () =>
+          import("./profile/profile.module").then((m) => m.ProfilePageModule),
+      },
     ],
   },
 ];
